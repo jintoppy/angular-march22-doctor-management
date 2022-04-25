@@ -5,6 +5,8 @@ import { DoctorListComponent } from './components/doctor-list/doctor-list.compon
 import { EditDoctorComponent } from './components/edit-doctor/edit-doctor.component';
 import { CreateDoctorComponent } from './components/create-doctor/create-doctor.component';
 import { DoctorLayoutComponent } from './components/doctor-layout/doctor-layout.component';
+import { DoctorDetailsComponent } from './components/doctor-details/doctor-details.component';
+import { Role } from '../../models/role';
 
 const routes: Routes = [
   {
@@ -13,19 +15,38 @@ const routes: Routes = [
     children: [
       {
         path: 'list',
-        component: DoctorListComponent
+        component: DoctorListComponent,
+        data: {
+          roles: [Role.ADMIN]
+        }
       },
       {
         path: 'edit',
-        component: EditDoctorComponent
+        component: EditDoctorComponent,
+        data: {
+          roles: [Role.ADMIN]
+        }
+      },
+      {
+        path: 'view',
+        component: DoctorDetailsComponent,
+        data: {
+          roles: [Role.ADMIN, Role.DOCTOR]
+        }
       },
       {
         path: 'create',
-        component: CreateDoctorComponent
+        component: CreateDoctorComponent,
+        data: {
+          roles: [Role.ADMIN]
+        }
       },
       {
         path: '',
-        component: DashboardComponent
+        component: DashboardComponent,
+        data: {
+          roles: [Role.ADMIN, Role.DOCTOR]
+        }
       }
     ]
   }
