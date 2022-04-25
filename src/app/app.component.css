@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    border-top: 1px solid gray;
+    padding: 10px;
+}
