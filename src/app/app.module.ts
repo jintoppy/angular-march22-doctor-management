@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './features/auth/auth.module';
+import { DoctorModule } from './features/doctor/doctor.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -9,7 +11,9 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,    
+    AuthModule,
+    DoctorModule,
     AppRoutingModule
   ],
   providers: [],
