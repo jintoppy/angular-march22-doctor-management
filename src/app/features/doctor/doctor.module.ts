@@ -7,6 +7,7 @@ import { DoctorDetailsComponent } from './components/doctor-details/doctor-detai
 import { CreateDoctorComponent } from './components/create-doctor/create-doctor.component';
 import { EditDoctorComponent } from './components/edit-doctor/edit-doctor.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DoctorLayoutComponent } from './components/doctor-layout/doctor-layout.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     DoctorDetailsComponent,
     CreateDoctorComponent,
     EditDoctorComponent,
-    DashboardComponent
+    DashboardComponent,
+    DoctorLayoutComponent
   ],
   imports: [
     CommonModule,
