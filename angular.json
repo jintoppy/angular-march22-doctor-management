@@ -71,7 +71,8 @@
               "browserTarget": "doctor-management:build:production"
             },
             "development": {
-              "browserTarget": "doctor-management:build:development"
+              "browserTarget": "doctor-management:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

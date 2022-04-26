@@ -7,18 +7,20 @@ import { CreateDoctorComponent } from './components/create-doctor/create-doctor.
 import { DoctorLayoutComponent } from './components/doctor-layout/doctor-layout.component';
 import { DoctorDetailsComponent } from './components/doctor-details/doctor-details.component';
 import { Role } from '../../models/role';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: 'doctor',
     component: DoctorLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'list',
         component: DoctorListComponent,
         data: {
           roles: [Role.ADMIN]
-        }
+        }        
       },
       {
         path: 'edit',
@@ -31,7 +33,7 @@ const routes: Routes = [
         path: 'view',
         component: DoctorDetailsComponent,
         data: {
-          roles: [Role.ADMIN, Role.DOCTOR]
+          roles: [Role.ADMIN, Role.USER]
         }
       },
       {
@@ -45,7 +47,7 @@ const routes: Routes = [
         path: '',
         component: DashboardComponent,
         data: {
-          roles: [Role.ADMIN, Role.DOCTOR]
+          roles: [Role.ADMIN, Role.USER]
         }
       }
     ]
