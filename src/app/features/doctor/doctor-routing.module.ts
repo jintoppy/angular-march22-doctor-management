@@ -12,15 +12,15 @@ import { AuthGuard } from '../auth/auth.guard';
 const routes: Routes = [
   {
     path: 'doctor',
-    component: DoctorLayoutComponent,
-    canActivate: [AuthGuard],
+    component: DoctorLayoutComponent, 
+    canActivate: [AuthGuard],   
     children: [
       {
         path: 'list',
         component: DoctorListComponent,
         data: {
           roles: [Role.ADMIN]
-        }        
+        },        
       },
       {
         path: 'edit',

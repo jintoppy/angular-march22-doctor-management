@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Role } from 'src/app/models/role';
 import { LoginResponse, User } from 'src/app/models/user';
@@ -9,15 +10,22 @@ import { LoginResponse, User } from 'src/app/models/user';
 })
 export class AuthService {
 
-  private _user?: User;
+  private _user: User | null = this.getUserInfoFromStorage();
   private _authToken?: string;
+  public loginState$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(this._user)
 
   constructor(private http: HttpClient) { }
 
+  getUserInfoFromStorage(): User | null {
+    const userFromStorage = sessionStorage.getItem('user');
+    return userFromStorage? JSON.parse(userFromStorage) : null;
+  }
+
   storeDetails(res: LoginResponse){
-    //store in sessionStorage
     this._user = res.user;
     this._authToken = res.access_token;
+    sessionStorage.setItem('user', JSON.stringify(this._user));
+    this.loginState$.next(this._user);
   }
 
   isUserLoggedIn(): boolean{
@@ -36,10 +44,17 @@ export class AuthService {
     return this._user;
   }
 
-  createUser(){
+  logout(){
+    this._user = null;
+    this._authToken = undefined;
+    sessionStorage.removeItem('user');
+    this.loginState$.next(null);
+  }
+
+  createUser(username:string, password: string){
     return this.http.post<LoginResponse>('/api/auth/login', {
-      username: 'john',
-      password: 'changeme'
+      username,
+      password
     }).pipe(      
       tap((response: LoginResponse) => {
         this.storeDetails(response);
