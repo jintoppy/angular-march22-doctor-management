@@ -11,7 +11,7 @@ import { LoginResponse, User } from 'src/app/models/user';
 export class AuthService {
 
   private _user: User | null = this.getUserInfoFromStorage();
-  private _authToken?: string;
+  private _authToken: string | null = this.getTokenFromStorage();
   public loginState$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(this._user)
 
   constructor(private http: HttpClient) { }
@@ -21,10 +21,15 @@ export class AuthService {
     return userFromStorage? JSON.parse(userFromStorage) : null;
   }
 
-  storeDetails(res: LoginResponse){
+  getTokenFromStorage(){
+    return sessionStorage.getItem('token');
+  }
+
+  storeDetails = (res: LoginResponse) => {
     this._user = res.user;
     this._authToken = res.access_token;
     sessionStorage.setItem('user', JSON.stringify(this._user));
+    sessionStorage.setItem('token', this._authToken);
     this.loginState$.next(this._user);
   }
 
@@ -46,7 +51,7 @@ export class AuthService {
 
   logout(){
     this._user = null;
-    this._authToken = undefined;
+    this._authToken = null;
     sessionStorage.removeItem('user');
     this.loginState$.next(null);
   }
@@ -56,9 +61,10 @@ export class AuthService {
       username,
       password
     }).pipe(      
-      tap((response: LoginResponse) => {
-        this.storeDetails(response);
-      })
+      // tap((response: LoginResponse) => {
+      //   this.storeDetails(response);
+      // })
+      tap(this.storeDetails)
     );
   }
 }

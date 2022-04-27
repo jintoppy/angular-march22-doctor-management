@@ -9,13 +9,15 @@ export class DoctorService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  getDoctors(){
-    //interceptor
-    const headers = new HttpHeaders()
-                      .set('Authorization', `Bearer ${this.auth.getAuthToken()}`);
+  deleteDoctor(doctorId:number){
+    return this.http.delete(`/api/doctors/${doctorId}`);
+  }
 
-    return this.http.get('/api/doctors', {
-      headers
-    });
+  getDoctor(doctorId:number){
+    return this.http.get(`/api/doctors/${doctorId}`);
+  }
+
+  getDoctors(){
+    return this.http.get('/api/doctors');
   }
 }
