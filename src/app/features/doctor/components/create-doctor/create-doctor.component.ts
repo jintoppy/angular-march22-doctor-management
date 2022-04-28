@@ -17,6 +17,10 @@ export class CreateDoctorComponent implements OnInit {
   constructor(private doctorService: DoctorService, private router: Router) { }
 
   ngOnInit(): void {
+    this.doctorService.getSpecializations()
+      .subscribe((val:string[]) => {
+        console.log(val);
+      });
   }
 
   onCreate(){

@@ -22,6 +22,10 @@ export class DoctorService {
     return this.http.get<Doctor[]>('/api/doctors');
   }
 
+  getSpecializations(){
+    return this.http.get<string[]>('/api/doctors/specializations');
+  }
+
   createDoctor(newUser: Doctor){
     return this.http.post('/api/doctors',newUser);
   }
