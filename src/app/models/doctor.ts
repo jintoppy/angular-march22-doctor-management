@@ -1,3 +1,4 @@
-export type User = {
+export type Doctor = {
     name:string;
+    specialization: string;
 }

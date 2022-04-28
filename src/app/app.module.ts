@@ -18,7 +18,7 @@ import { httpInterceptorProviders } from './http-interceptors';
     AppRoutingModule
   ],
   providers: [
-    // httpInterceptorProviders
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

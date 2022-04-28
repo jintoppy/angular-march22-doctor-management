@@ -11,10 +11,10 @@ export class DashboardComponent implements OnInit {
   constructor(private doctorService: DoctorService) { }
 
   ngOnInit(): void {
-    this.doctorService.getDoctors()
-      .subscribe((val:any) => {
-        console.log(val);
-      })
+    // this.doctorService.getDoctors()
+    //   .subscribe((val:any) => {
+    //     console.log(val);
+    //   })
   }
 
 }

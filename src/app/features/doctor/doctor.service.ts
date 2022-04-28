@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
+import { Doctor } from '../../models/doctor';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class DoctorService {
   }
 
   getDoctors(){
-    return this.http.get('/api/doctors');
+    return this.http.get<Doctor[]>('/api/doctors');
+  }
+
+  createDoctor(newUser: Doctor){
+    return this.http.post('/api/doctors',newUser);
   }
 }

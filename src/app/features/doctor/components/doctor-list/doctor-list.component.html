@@ -1,1 +1,21 @@
-<p>doctor-list works!</p>
+<h2>Doctors</h2>
+<table *ngIf="doctors.length > 0">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let doctor of doctors">
+            <td>{{doctor.name}}</td>
+            <td>
+                {{doctor.specialization}}
+            </td>
+            <td>
+                <button>Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
