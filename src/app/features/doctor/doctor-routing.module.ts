@@ -12,7 +12,7 @@ import { RoleGuard } from '../auth/role.guard';
 
 const routes: Routes = [
   {
-    path: 'doctor',
+    path: '',
     component: DoctorLayoutComponent, 
     canActivate: [AuthGuard],   
     children: [

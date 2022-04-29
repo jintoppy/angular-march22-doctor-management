@@ -1,5 +1,5 @@
 <h2>Doctors</h2>
-<table *ngIf="doctors.length > 0">
+<table *ngIf="doctors$">
     <thead>
         <tr>
             <th>Name</th>
@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let doctor of doctors">
+        <tr *ngFor="let doctor of doctors$ | async">
             <td>{{doctor.name}}</td>
             <td>
                 {{doctor.specialization}}
